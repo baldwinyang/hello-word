@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.AgvMapper">
+    
+    <insert id="save" parameterType="entity.User" >
+	        insert into user(user_name,user_password,user_type)
+	        values (#{name},#{password},#{user_type})    
+	</insert>
+	<select id="findAllAgv" resultType="entity.Agv">
+        SELECT *  FROM agv
+    </select>
+    <select id="findByName" resultType="entity.Agv" parameterType="string">
+    select * from agv where name=#{name}
+    </select>
+    <insert id="addAgv" parameterType="entity.Agv">
+	        insert into agv (name,ip) values (#{name},#{ip})  
+    </insert>
+    <delete id="deleteAgvByname" parameterType="string" >
+    delete from agv where name=#{name}
+    </delete>
+    <update id="updateAgv">
+    update agv set name=#{name},ip=#{ip} where id=#{id}
+    </update>
+    <update id="updateAgvLocation">
+    update agv set location=#{location} where name=#{name}
+    </update>
+</mapper>
